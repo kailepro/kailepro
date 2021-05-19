@@ -9,7 +9,7 @@ const client = new Discord.Client();
 
 // token  placement
 
-const token = 'ODA1Mjk4MjA1NjE1OTgwNTg0.YBY2ZQ._JVyffHmDTozWL5MZoegEhqa7OE';
+const token = 'fuck off';
 
 // dont need fs but if i do i already have it
 
