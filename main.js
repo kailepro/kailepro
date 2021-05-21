@@ -1,4 +1,4 @@
-Hey, Code starts below
+Hey, Code starts below (updated) :)
 
 const Discord = require('discord.js');
 const { getServers } = require('dns');
@@ -9,24 +9,34 @@ const client = new Discord.Client();
 
 // token  placement
 
-const token = 'fuck off';
+const token = 'NERD.';
 
 // dont need fs but if i do i already have it
 
 const fs = require('fs');
+
+// placement \\ 
+
+const hereLol = 'avatar go brrrr';
 
 
 // where u type node . / node main.js
 
 
 client.once('ready', () => {
-    console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
+    console.log(`Logged in as ${client.user.tag}, Have fun Crunchy`);
 })
 
 // activity stuff cause y e s 
 
+client.on('error', (error) => {
+    console.log(error);
+});
+
+
+
 client.on('ready', () => {
-    client.user.setActivity(`:help | in ${client.guilds.cache.size} Servers with ${client.users.cache.size} Members Overall`, { type: "WATCHING" });
+    client.user.setActivity(`:help | in ${client.guilds.cache.size} Servers with ${client.users.cache.size} Members Overall`, { type: "LISTENING" });
 
 }, 1000);
 
@@ -57,9 +67,10 @@ client.on('message', message =>{
         .addFields(
             {name: 'Main Commands :cd:', value: ':wyr :t :d'},
             {name: 'Other Commands :dvd:', value: ':avatar profile'},
+            {name: 'WYR REPO:', value: ':GHUBREPO'},
             {name: 'Invite me :hammer_pick:', value: ':addme'},
-            {name: 'Developer Commands / Tests :tools:', value: ':dm :test :brokenmsg'},
-            {name: 'Help commands for commands that ur looking in a help command??? :pick:', value: ':helpmain :helpothers :helpinvi :helpdev '}
+            {name: 'Developer Commands / Tests :tools:', value: ':dm :test :brokenmsg :ping'},
+            {name: 'Help commands for commands that ur looking in a help command??? :pick:', value: ':helpmain :helpothers :helpinvi :helpdev :helpWYRREP'}
         )
         .setColor('#260d4e')
         .setFooter(`Help for ${message.author.username}`)
@@ -84,8 +95,9 @@ client.on('message', message =>{
         const user = message.mentions.users.first() || message.author;
 
         let embed = new Discord.MessageEmbed()
-        .setTitle(`${user.tag}'s Avatar`)
-        .setDescription(`[AvatarURL](${user.avatarURL()})`)
+        .setTitle(hereLol)
+        .setAuthor(`${user.tag}'s Avatar`)
+        .setDescription(`[URL](${user.avatarURL()})`)
         .setImage(user.displayAvatarURL({dynamic: true, size: 2048 }))
         .setTimestamp()
         .setColor('BLUE')
@@ -114,7 +126,7 @@ client.on('message', message =>{
         const user = message.mentions.users.first() || message.author;
 
         let embed = new Discord.MessageEmbed()
-        .setAuthor(` ${message.author.username}`)
+        .setAuthor(` ${message.author.username}`, message.author.displayAvatarURL())
         .setThumbnail(user.displayAvatarURL({dynamic: true, size: 2048 }))
         message.channel.send(embed)
     }
@@ -214,7 +226,8 @@ client.on('message', message =>{
         .addFields(
             {name: ':dm', value: 'Just a DM test command'},
             {name: ':test', value: 'Simple message test when i first made the bot.'},
-            {name: ':brokenmsg', value: 'I was trying to show a friend how to make a rnd message, but made this some how?'}
+            {name: ':brokenmsg', value: 'I was trying to show a friend how to make a rnd message, but made this some how?'},
+            {name: ':ping', value: `Displays ${client.user.tag}'s ping.`}
         )
         .setColor("RANDOM")
         .setFooter('Thanks for using my bot')
@@ -224,7 +237,7 @@ client.on('message', message =>{
 
 
         let embed = new Discord.MessageEmbed()
-        .setAuthor(`User info for ${message.author.username}`, message.author.displayAvatarURL()) 
+        .setAuthor(`User info for ${message.author.username}`, message.author.displayAvatarURL({dynamic: true})) 
         .setDescription('Profile info command yay!')
         .addFields(
             {name: 'User Tag', value: message.author.tag},
@@ -239,9 +252,42 @@ client.on('message', message =>{
       if(message.content === 'test e') {
           message.channel.send(':avatar')
       }
+     if(message.content === ':GHUBREPO') {
+         let embed = new Discord.MessageEmbed()
+         .setAuthor(`Heres the Ghub REPO ${message.author.username}`, message.author.displayAvatarURL({dynamic: true}))
+         .setTitle("I'm not sure why anyone would want this code, but ok.")
+         .setDescription('You can copy it but dont make it obvious.')
+         .addField('Ghub REPO:', 'https://github.com/kailepro/kailepro/tree/main')
+         .setColor("RANDOM")
+         .setFooter(`Request of GHub REPO from ${message.author.username}`)
+         message.channel.send(embed)
+     }
+     if(message.content === ':helpWYRREP') {
+        let embed = new Discord.MessageEmbed()
+        .setTitle('These help `{command}` stuff is just for describing what commands do.')
+        .setDescription('Heres the help you wanted.')
+        .addFields(
+            {name: ':GHUBREPO', value: `Sends the REPO for WYR Bot.`}
+
+        )
+        .setColor("RANDOM")
+        .setFooter('Thanks for using my bot')
+        message.channel.send(embed)
+
+     }
+     if(message.content === ':ping') {
+         let embed = new Discord.MessageEmbed()
+         .setAuthor("Bot's Ping", message.author.displayAvatarURL())
+         .setDescription(`🏓 Ping is \`${Math.round(client.ws.ping)}ms\``)
+         .setColor("RANDOM")
+         .setTimestamp()
+         .setFooter(`pong | Request from ${message.author.username}`)
+         message.channel.send(embed)
+     }
+     
      
         // **END OF MESSAGESS** \\
-})
+}, 1000)
 
 
 // bot login
